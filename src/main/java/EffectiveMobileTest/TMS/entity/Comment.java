@@ -9,21 +9,23 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "comment")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "username", length = 128, nullable = false, unique = true)
-    private String username;
+    @Column(name = "content", length = 4096, nullable = false)
+    private String content;
 
-    @Column(name = "email", length = 128, nullable = false, unique = true)
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
 
-    @Column(name = "password", length = 128, nullable = false)
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    private User author;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
