@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -34,4 +35,13 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Task> authorTasks;
+
+    @OneToMany(mappedBy = "executor", cascade = CascadeType.ALL)
+    private List<Task> executorTasks;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Comment> authorComments;
 }

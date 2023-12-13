@@ -20,12 +20,12 @@ public class Comment {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "task_id", nullable = false)
-    private Task task;
-
-    @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id", nullable = false)
+    private Task task;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

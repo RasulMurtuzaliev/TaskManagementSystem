@@ -22,7 +22,7 @@ public class Task {
     @Column(name = "title", length = 128, nullable = false)
     private String title;
 
-    @Column(name = "description", length = 4096, nullable = false)
+    @Column(name = "description", length = 4096)
     private String description;
 
     @Enumerated(EnumType.STRING)
@@ -39,7 +39,7 @@ public class Task {
     @JoinColumn(name = "executor_id", nullable = false)
     private User executor;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Comment> comment;
 
     @CreationTimestamp
