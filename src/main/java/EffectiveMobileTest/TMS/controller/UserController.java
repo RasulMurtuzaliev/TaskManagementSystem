@@ -1,7 +1,7 @@
 package EffectiveMobileTest.TMS.controller;
 
-import EffectiveMobileTest.TMS.service.TaskService;
-import EffectiveMobileTest.TMS.dto.TaskDto;
+import EffectiveMobileTest.TMS.dto.UserDto;
+import EffectiveMobileTest.TMS.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/tasks")
-@Tag(name = "Tasks", description = "Task management API")
-public class TaskController {
+@RequestMapping("/api/v1/users")
+@Tag(name = "Users", description = "User management API")
+public class UserController {
 
-    private final TaskService taskService;
+    private final UserService userService;
 
     @PostMapping("/")
-    @Operation(summary = "Create task")
-    public TaskDto createTask(@RequestBody TaskDto taskDto) {
-        return taskService.createTask(taskDto);
+    @Operation(summary = "Create user")
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userService.createUser(userDto);
     }
 }
