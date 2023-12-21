@@ -18,4 +18,9 @@ public class UserService {
     public UserDto createUser(UserDto userDto) {
         return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
     }
+
+    @Transactional
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 }

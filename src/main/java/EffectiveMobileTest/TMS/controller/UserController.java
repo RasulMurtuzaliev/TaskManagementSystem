@@ -5,6 +5,8 @@ import EffectiveMobileTest.TMS.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,15 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/")
+    @PostMapping
     @Operation(summary = "Create user")
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete user")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }
