@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  master_postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: tms_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  app:
+    image: rasulmm/taskmanagementsystem:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://master_postgres:5432/tms_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - master_postgres
